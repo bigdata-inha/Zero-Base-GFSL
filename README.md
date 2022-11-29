@@ -1,14 +1,11 @@
 # Zero-Base GFSL
 
-Better Generalized Few-Shot Learning Despite No Base Data in AAAI 2023 by Seong-Woong Kim and Dong-Wan Choi
+Better Generalized Few-Shot Learning Despite No Base Data in AAAI 2023 
+by Seong-Woong Kim and Dong-Wan Choi
 
 <img src="https://github.com/anonymous-14518/zero-base-GFSL/blob/main/zero_base_GFSL_concept.png" width="900">
 
 
-
-## Main Results
-
-*The models on *miniImageNet* use ResNet-12 as backbone,  and *tieredImageNet* use ResNet-18.
 
 
 ####
