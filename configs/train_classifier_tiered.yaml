@@ -1,0 +1,29 @@
+train_dataset: image-folder
+train_dataset_args: 
+    root_path : './materials/tiered-imagenet/train'
+    image_size: 84
+    box_size: 92
+    augment: resize
+    
+val_dataset: image-folder
+val_dataset_args: 
+    root_path : './materials/tiered-imagenet/train_val'
+    image_size: 84
+    box_size: 92
+    classes: 200
+
+#load: ./save/tiered-resnet12.pth
+model: classifier
+model_args:
+    encoder: rfs-resnet18
+    encoder_args: {}
+    classifier: linear-classifier
+    classifier_args: {n_classes: 351}
+
+batch_size: 512
+max_epoch: 120
+optimizer: sgd
+optimizer_args: {lr: 0.1, weight_decay: 5.e-4, milestones: [40, 80]}
+
+save_epoch: 5
+visualize_datasets: true

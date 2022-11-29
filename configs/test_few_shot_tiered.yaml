@@ -1,0 +1,37 @@
+dataset: tiered-imagenet
+dataset_args: {split: test}
+
+#load: /home/seongwoongkim/git_projects/few-shot-meta-baseline/save/meta_mini-imagenet-1shot_meta-baseline-resnet12/max-va.pth
+load: ./save/tiered-rfs-resnet18.pth
+#load: /home/bigdatainha/BigData/SeongWoong/rfs/path/to/save/mini_simple.pth
+
+model: fine-tune
+model_args:
+    encoder: resnet12
+    encoder_args: {}
+    classifier: linear-classifier 
+    classifier_args: {n_classes: 200}
+    
+# Replace load with load_encoder for loading the encoder only (e.g. for testing Classifier-Baseline)
+
+optimizer: sgd
+optimizer_args: {lr: 0.01, weight_decay: 5.e-4}
+freeze_bn: True
+batch_size: 512
+
+
+val_dataset: image-folder
+val_dataset_args: 
+    root_path : './materials/tiered-imagenet/train_val'
+    image_size: 84
+    box_size: 92
+   # split_file: ./materials/tiered-base.json
+   # split : base
+    
+base_dataset: image-folder
+base_dataset_args: 
+    root_path : './materials/tiered-imagenet/train_val'
+    image_size: 84
+    box_size: 92
+    #split_file: ./materials/tiered-base.json
+    #split : base

@@ -1,0 +1,28 @@
+train_dataset: image-folder
+train_dataset_args: 
+    root_path: /mnt/disk1/workspace/Datasets/imagenet/ILSVRC2012_img_256_train
+    split_file: ./materials/IMAGENET_LOWSHOT_BENCHMARK_CATEGORY_SPLITS.json
+    split: base
+    augment: true
+
+val_dataset: image-folder
+val_dataset_args: 
+    root_path: /mnt/disk1/workspace/Datasets/ILSVRC2012_img_validation
+    split_file: ./materials/IMAGENET_LOWSHOT_BENCHMARK_CATEGORY_SPLITS.json
+    split: base
+
+
+model: classifier
+model_args:
+    encoder: resnet50
+    encoder_args: {}
+    classifier: linear-classifier 
+    classifier_args: {n_classes: 389}
+
+batch_size: 256
+max_epoch: 90
+optimizer: sgd
+optimizer_args: {lr: 0.1, weight_decay: 1.e-4, milestones: [30, 60]}
+
+save_epoch: 5
+visualize_datasets: true

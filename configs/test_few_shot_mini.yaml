@@ -1,0 +1,28 @@
+dataset: mini-imagenet
+dataset_args: {split: test}
+
+#load: /home/seongwoongkim/git_projects/few-shot-meta-baseline/save/meta_mini-imagenet-1shot_meta-baseline-resnet12/max-va.pth
+#load: ./save/mini-resnet12.pth
+
+load: ./save/mini-drop.pth
+#load: /mnt/disk1/workspace/SeongWoong/rfs/path/to/save/mini_simple.pth
+
+model: fine-tune
+model_args:
+    encoder: resnet12
+    encoder_args: {}
+    classifier: linear-classifier 
+    classifier_args: {n_classes: 64}
+    
+# Replace load with load_encoder for loading the encoder only (e.g. for testing Classifier-Baseline)
+
+optimizer: sgd
+optimizer_args: {lr: 0.01, weight_decay: 5.e-4}
+freeze_bn: True
+
+val_dataset: mini-imagenet
+val_dataset_args: {split: train_phase_test}
+
+base_dataset: mini-imagenet
+base_dataset_args: {split: train_phase_train, augment: resize}
+batch_size: 128

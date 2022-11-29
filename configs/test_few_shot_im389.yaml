@@ -1,0 +1,38 @@
+dataset: image-folder
+dataset_args: 
+    root_path: /mnt/disk1/workspace/Datasets/ILSVRC2012_img_validation
+    split_file: ./materials/IMAGENET_LOWSHOT_BENCHMARK_CATEGORY_SPLITS.json
+    split: novel
+
+
+batch_size: 512
+
+#load: /home/seongwoongkim/git_projects/few-shot-meta-baseline/save/classifier_mini-imagenet_resnet12-cosine-classifier/max-va.pth
+load: ./save/im389-resnet10.pth
+#load: /home/bigdatainha/BigData/SeongWoong/rfs/path/to/save/mini_simple.pth
+
+model: fine-tune
+model_args:
+    encoder: resnet10
+    encoder_args: {}
+    classifier: cosine-classifier 
+    classifier_args: {n_classes: 389}
+    
+# Replace load with load_encoder for loading the encoder only (e.g. for testing Classifier-Baseline)
+
+optimizer: sgd
+optimizer_args: {lr: 0.01, weight_decay: 5.e-4}
+freeze_bn: True
+
+val_dataset: image-folder
+val_dataset_args: 
+    root_path:  /mnt/disk1/workspace/Datasets/ILSVRC2012_img_validation
+    split_file: ./materials/IMAGENET_LOWSHOT_BENCHMARK_CATEGORY_SPLITS.json
+    split: base
+
+
+base_dataset: image-folder
+base_dataset_args: 
+    root_path:  /mnt/disk1/workspace/Datasets/ILSVRC2012_img_validation
+    split_file: ./materials/IMAGENET_LOWSHOT_BENCHMARK_CATEGORY_SPLITS.json
+    split: novel
